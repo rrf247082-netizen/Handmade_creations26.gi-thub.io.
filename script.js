@@ -313,7 +313,7 @@ import {
     if(signupForm){
       signupForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const fullName = signupForm.querySelector('#fullname').value.trim();
+        const fullName = signupForm.querySelector('#fullName').value.trim();
         const email = signupForm.querySelector('#signupEmail').value.trim();
         const phone = signupForm.querySelector('#phone').value.trim();
         const password = signupForm.querySelector('#signupPassword').value;
