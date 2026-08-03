@@ -1,9 +1,8 @@
-import { auth } from "./firebase.js";
 import {
+  auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
-} from 
-   "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+} from "./firebase.js";
 
 (() => {
   // ----- Storage helpers -----
