@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wishlist | Handmade Creations 26</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="top-bar">🌸 Your Wishlist — Handmade Creations 26</div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><img src="images/logo.png" alt="Handmade Creations 26"></a>
+      <nav class="header-icons"><a href="shop.html">🛍 Shop</a></nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding:40px 0;">
+    <h1 style="text-align:center;color:var(--accent);margin-bottom:24px">Your Wishlist</h1>
+
+    <div style="max-width:1100px;margin:0 auto;">
+      <div id="emptyWishlist" style="display:none;background:#fff;padding:18px;border-radius:12px;box-shadow:var(--card-shadow);text-align:center;margin-bottom:12px">
+        <h2 style="color:var(--accent);margin:0 0 8px">Your wishlist is empty</h2>
+        <p style="color:var(--muted)">Add items you love to your wishlist to keep them for later.</p>
+        <a href="shop.html" class="btn" style="margin-top:12px;display:inline-block">Shop Now</a>
+      </div>
+
+      <div id="wishlistContainer" class="grid products-grid"></div>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container footer-grid"><div><h3>Handmade Creations 26</h3></div></div></footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

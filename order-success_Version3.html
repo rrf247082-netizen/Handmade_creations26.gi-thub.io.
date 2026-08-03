@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Order Confirmed | Handmade Creations 26</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="top-bar">🌸 Thank you for your order!</div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><img src="images/logo.png" alt="Handmade Creations 26"></a>
+      <nav class="header-icons"><a href="shop.html">🛍 Shop</a></nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding:40px 0;">
+    <div id="orderSuccess" style="background:#fff;padding:18px;border-radius:12px;box-shadow:var(--card-shadow);max-width:1000px;margin:0 auto">
+      <div style="text-align:center">
+        <h1 style="color:var(--accent);margin:0 0 6px">Order Confirmed ✅</h1>
+        <p style="color:var(--muted)">Thank you for your purchase! We've received your order and will process it shortly.</p>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;gap:16px;margin-top:18px;flex-wrap:wrap">
+        <div>
+          <p><strong>Order ID:</strong> <span id="orderId">-</span></p>
+          <p><strong>Placed On:</strong> <span id="orderDate">-</span></p>
+          <p><strong>Payment:</strong> <span id="orderPayment">-</span></p>
+        </div>
+        <div style="text-align:right">
+          <p><strong>Customer:</strong> <span id="orderCustomer">-</span></p>
+          <p><strong>Total:</strong> ₹<span id="orderTotal">0.00</span></p>
+        </div>
+      </div>
+
+      <hr style="margin:18px 0">
+
+      <h3 style="color:var(--accent)">Order Summary</h3>
+      <div id="orderItems"></div>
+
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:18px">
+        <a href="orders.html" class="btn btn-outline">View Orders</a>
+        <a href="shop.html" class="btn">Continue Shopping</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container footer-grid"><div><h3>Handmade Creations 26</h3></div></div></footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

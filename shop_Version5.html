@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shop | Handmade Creations 26</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="top-bar">🌸 Browse Handmade Gifts & Décor</div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><img src="images/logo.png" alt="Handmade Creations 26"></a>
+      <nav class="header-icons" aria-label="Primary">
+        <a href="wishlist.html">❤️ Wishlist</a>
+        <a href="cart.html">🛒 Cart</a>
+        <a href="login.html">👤 Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding:40px 0;">
+    <h1 style="text-align:center;color:var(--accent);margin-bottom:24px;">Shop Our Handmade Collection</h1>
+
+    <div class="shop-grid" style="display:grid;grid-template-columns:1fr 3fr;gap:24px;align-items:start;">
+      <aside style="background:#fff;padding:18px;border-radius:12px;box-shadow:var(--card-shadow);">
+        <h3 style="color:var(--accent);margin-top:0">Categories</h3>
+        <ul style="list-style:none;padding:0;margin:0 0 12px 0">
+          <li><a href="shop.html?cat=flowers">🌸 Flowers</a></li>
+          <li><a href="shop.html?cat=keychains">🔑 Keychains</a></li>
+          <li><a href="shop.html?cat=gifts">🎁 Gift Sets</a></li>
+          <li><a href="shop.html?cat=decor">🏡 Home Décor</a></li>
+        </ul>
+      </aside>
+
+      <section>
+        <div id="productGrid" class="grid products-grid">
+          <article class="product-card" data-name="Rose Bouquet" data-price="799" data-image="images/product1.jpg">
+            <img src="images/product1.jpg" alt="Rose Bouquet">
+            <h3>Rose Bouquet</h3>
+            <p class="price">₹799</p>
+            <div class="card-actions">
+              <button class="btn add-to-cart">Add to Cart</button>
+              <button class="btn btn-outline add-wishlist">♡ Wishlist</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="Handmade Keychain" data-price="249" data-image="images/product2.jpg">
+            <img src="images/product2.jpg" alt="Handmade Keychain">
+            <h3>Handmade Keychain</h3>
+            <p class="price">₹249</p>
+            <div class="card-actions">
+              <button class="btn add-to-cart">Add to Cart</button>
+              <button class="btn btn-outline add-wishlist">♡ Wishlist</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="Gift Set" data-price="1299" data-image="images/product3.jpg">
+            <img src="images/product3.jpg" alt="Gift Set">
+            <h3>Gift Set</h3>
+            <p class="price">₹1299</p>
+            <div class="card-actions">
+              <button class="btn add-to-cart">Add to Cart</button>
+              <button class="btn btn-outline add-wishlist">♡ Wishlist</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="Home Décor Piece" data-price="599" data-image="images/product4.jpg">
+            <img src="images/product4.jpg" alt="Home Décor Piece">
+            <h3>Home Décor Piece</h3>
+            <p class="price">₹599</p>
+            <div class="card-actions">
+              <button class="btn add-to-cart">Add to Cart</button>
+              <button class="btn btn-outline add-wishlist">♡ Wishlist</button>
+            </div>
+          </article>
+        </div>
+
+        <div style="text-align:center;margin-top:20px;">
+          <button class="btn btn-outline">‹ Prev</button>
+          <button class="btn btn-outline">Next ›</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Handmade Creations 26</h3>
+        <p>Flowers That Never Fade 🌸</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a><br>
+        <a href="contact.html">Contact</a><br>
+        <a href="about.html">About</a>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <a href="#">Instagram</a><br>
+        <a href="#">Facebook</a><br>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
