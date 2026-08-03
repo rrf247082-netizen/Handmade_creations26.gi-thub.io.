@@ -1,8 +1,9 @@
-/* Unified, modular frontend script for Handmade Creations 26
-   - Uses localStorage for cart, wishlist, user, lastOrder
-   - Event delegation for product actions
-   - Shared handlers for many pages
-*/
+import { auth } from "./firebase.js";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from 
+   "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 (() => {
   // ----- Storage helpers -----
@@ -320,10 +321,14 @@
         const confirm = signupForm.querySelector('#confirmPassword').value;
         if(!fullName || !email || !password){ notify('Please fill required fields'); return; }
         if(password !== confirm){ notify('Passwords do not match'); return; }
-        const user = { fullName, email, phone, password };
-        Auth.set(user);
-        notify('Account created');
-        window.location.href = 'login.html';
+        createUserWithEmailAndPassword(auth, email, password)
+  .then(() => {
+    notify('Account created');
+    window.location.href = 'login.html';
+  })
+  .catch((error) => {
+    notify(error.message);
+  });
       });
     }
 
@@ -333,13 +338,14 @@
         e.preventDefault();
         const email = loginForm.querySelector('#email').value.trim();
         const password = loginForm.querySelector('#password').value;
-        const stored = Auth.get();
-        if(!email || !password) { notify('Enter credentials'); return; }
-        if(stored && stored.email === email && stored.password === password){
-          notify('Login successful');
-          window.location.href = 'index.html';
-        } else {
-          notify('Invalid credentials');
+        SignInWithEmailAndPassword(auth, email, password)
+  .then(() => {
+    notify('Login successful');
+    window.location.href = 'index.html';
+  })
+  .catch((error) => {
+    notify(error.message);
+  });
         }
       });
 
