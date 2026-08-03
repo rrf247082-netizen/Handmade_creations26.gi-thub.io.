@@ -337,7 +337,7 @@ import {
         e.preventDefault();
         const email = loginForm.querySelector('#email').value.trim();
         const password = loginForm.querySelector('#password').value;
-        SignInWithEmailAndPassword(auth, email, password)
+        signInWithEmailAndPassword(auth, email, password)
   .then(() => {
     notify('Login successful');
     window.location.href = 'index.html';
