@@ -329,10 +329,15 @@ import {
         if(!fullName || !email || !password){ notify('Please fill required fields'); return; }
         if(password !== confirm){ notify('Passwords do not match'); return; }
         createUserWithEmailAndPassword(auth, email, password)
-          .then(() => {
-            notify('Account created');
-            window.location.href = 'login.html';
-          })
+          .then((userCredential) => {
+    return updateProfile(userCredential.user, {
+        displayName: fullName
+    });
+})
+.then(() => {
+    notify('Account created');
+    window.location.href = 'login.html';
+})
           .catch((error) => {
             notify(error.message || 'Signup failed');
           });
