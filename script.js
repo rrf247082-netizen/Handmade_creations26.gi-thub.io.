@@ -1,7 +1,8 @@
 import {
   auth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  updateProfile
 } from "./firebase.js";
 
 (() => {
