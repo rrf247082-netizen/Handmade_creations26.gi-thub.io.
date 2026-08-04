@@ -12,7 +12,9 @@ import {
 import {
   getFirestore,
   doc,
-  setDoc
+  setDoc,
+  collection,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -37,5 +39,7 @@ export {
   onAuthStateChanged,
   updateProfile,
   doc,
-  setDoc
+  setDoc,
+  collection,
+  getDocs
 };
