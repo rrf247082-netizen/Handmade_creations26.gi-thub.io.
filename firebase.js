@@ -35,6 +35,7 @@ export {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updateProfile,
   doc,
   setDoc
 };
