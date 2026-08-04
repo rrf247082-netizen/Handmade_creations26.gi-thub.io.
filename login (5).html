@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login | Handmade Creations 26</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="top-bar">🌸 Your Favourite Handmade Products</div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><img src="images/logo.png" alt="Handmade Creations 26"></a>
+      <nav class="header-icons"><a href="shop.html">🛍 Shop</a></nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding:40px 0;display:flex;justify-content:center">
+    <div style="max-width:460px;width:100%;background:#fff;padding:20px;border-radius:12px;box-shadow:var(--card-shadow)">
+      <h1 style="color:var(--accent);margin-top:0">Welcome Back</h1>
+      <p style="color:var(--muted)">Login to access your account and orders</p>
+
+      <form id="loginForm" style="display:flex;flex-direction:column;gap:12px">
+        <input id="email" type="email" placeholder="Email address" required>
+        <div style="position:relative;display:flex;align-items:center">
+          <input id="password" type="password" placeholder="Password" required style="width:100%;padding-right:96px">
+          <button type="button" id="togglePassword" class="btn btn-outline" style="position:absolute;right:4px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12px;padding:4px 8px">Show</button>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <label><input type="checkbox"> Remember me</label>
+          <a href="forgot.html" style="color:var(--accent)">Forgot?</a>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+        <p style="text-align:center;margin:0">Don't have an account? <a href="signup.html" style="color:var(--accent)">Create one</a></p>
+      </form>
+    </div>
+  </main>
+  <script type="module" src="firebase.js"></script>  
+  <script type="module" src="script.js"></script>
+</body>
+</html>
