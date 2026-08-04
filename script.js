@@ -1,5 +1,8 @@
 import {
   auth,
+  db,
+  collection,
+  getDocs,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -564,7 +567,34 @@ import {
     initContactForm();
   }
 
-  // ----- Initialize depending on page ----- 
+  // ----- Initialize depending on page -----
+  async function loadProducts() {
+  const grid = document.querySelector(".products-grid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+
+  const snapshot = await getDocs(collection(db, "product"));
+
+  snapshot.forEach((doc) => {
+    const p = doc.data();
+
+    grid.innerHTML += `
+      <article class="product-card"
+        data-name="${p.name}"
+        data-price="${p.price}"
+        data-image="${p.image}">
+        <img src="${p.image}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p class="price">₹${p.price}</p>
+        <div class="card-actions">
+          <button class="btn add-to-cart">Add to Cart</button>
+          <button class="btn btn-outline add-wishlist">♡ Wishlist</button>
+        </div>
+      </article>
+    `;
+  });
+  }
   document.addEventListener('DOMContentLoaded', () => {
     initHeaderActions();
     initShopHandlers();
@@ -576,6 +606,7 @@ import {
     initCheckoutPage();
     initOrderSuccess();
     initOrdersList();
+    loadProducts();
   });
 
 })();
