@@ -387,7 +387,11 @@ import {
 
         signInWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
-            Auth.set({ email: userCredential.user.email, displayName: userCredential.user.displayName, id: userCredential.user.uid });
+            Auth.set({
+    fullName: userCredential.user.displayName || "",
+    email: userCredential.user.email,
+    id: userCredential.user.uid
+});
             notify('Login successful');
             window.location.href = 'index.html';
           })
