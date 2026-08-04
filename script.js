@@ -572,28 +572,42 @@ import {
   const grid = document.querySelector(".products-grid");
   if (!grid) return;
 
-  grid.innerHTML = "";
+  try {
+    grid.innerHTML = "<p>Loading products...</p>";
 
-  const snapshot = await getDocs(collection(db, "product"));
+    const snapshot = await getDocs(collection(db, "product"));
 
-  snapshot.forEach((doc) => {
-    const p = doc.data();
+    console.log("Products found:", snapshot.size);
 
-    grid.innerHTML += `
-      <article class="product-card"
-        data-name="${p.name}"
-        data-price="${p.price}"
-        data-image="${p.image}">
-        <img src="${p.image}" alt="${p.name}">
-        <h3>${p.name}</h3>
-        <p class="price">₹${p.price}</p>
-        <div class="card-actions">
-          <button class="btn add-to-cart">Add to Cart</button>
-          <button class="btn btn-outline add-wishlist">♡ Wishlist</button>
-        </div>
-      </article>
-    `;
-  });
+    grid.innerHTML = "";
+
+    snapshot.forEach((doc) => {
+      const p = doc.data();
+
+      grid.innerHTML += `
+        <article class="product-card"
+          data-name="${p.name}"
+          data-price="${p.price}"
+          data-image="${p.image}">
+          <img src="${p.image}" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <p class="price">₹${p.price}</p>
+          <div class="card-actions">
+            <button class="btn add-to-cart">Add to Cart</button>
+            <button class="btn btn-outline add-wishlist">♡ Wishlist</button>
+          </div>
+        </article>
+      `;
+    });
+
+    if (snapshot.empty) {
+      grid.innerHTML = "<p>No products found.</p>";
+    }
+
+  } catch (error) {
+    console.error(error);
+    grid.innerHTML = `<p style="color:red">${error.message}</p>`;
+  }
   }
   document.addEventListener('DOMContentLoaded', () => {
     initHeaderActions();
