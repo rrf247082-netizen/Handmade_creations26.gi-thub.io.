@@ -1,4 +1,4 @@
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
 
 import {
   getAuth,
@@ -16,13 +16,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID"
+  apiKey: "AIzaSyAQCGH_AJIFR4nIbHAM2QY3RRU7J3anpOw",
+  authDomain: "handmade-creations-26.firebaseapp.com",
+  projectId: "handmade-creations-26",
+  storageBucket: "handmade-creations-26.firebasestorage.app",
+  messagingSenderId: "417729378912",
+  appId: "1:417729378912:web:aabbd2813706e7faf8e105",
+  measurementId: "G-L124M89TLL"
 };
 
 const app = initializeApp(firebaseConfig);
