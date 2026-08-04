@@ -587,6 +587,8 @@ snapshot.forEach(doc => {
 
     snapshot.forEach((doc) => {
       const p = doc.data();
+      console.log(p);
+alert(JSON.stringify(p));
 
       grid.innerHTML += `
         <article class="product-card"
