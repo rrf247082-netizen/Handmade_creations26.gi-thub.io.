@@ -577,10 +577,8 @@ import {
 
     const snapshot = await getDocs(collection(db, "product"));
 
-    alert(JSON.stringify(snapshot.docs.map(d => d.data())));
-
 snapshot.forEach(doc => {
-  alert(JSON.stringify(doc.data()));
+
 });
 
     console.log("Products found:", snapshot.size);
