@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged
+  updateProfile
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 
 import {
