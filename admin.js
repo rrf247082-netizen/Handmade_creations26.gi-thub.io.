@@ -16,8 +16,10 @@ onAuthStateChanged(auth, (user) => {
   if (user.email !== ADMIN_EMAIL) {
     alert("Access denied! Admin only.");
     window.location.href = "index.html";
+    return;
   }
-});
+  loadDashboard();
+  });
 
 async function loadDashboard() {
   const ordersSnapshot = await getDocs(collection(db, "orders"));
@@ -54,5 +56,3 @@ async function loadDashboard() {
   document.getElementById("totalSales").textContent =
     `₹${totalSales}`;
 }
-
-loadDashboard();
