@@ -3,7 +3,9 @@ import {
   db,
   collection,
   getDocs,
-  onAuthStateChanged
+  addDoc,
+  onAuthStateChanged,
+  serverTimestamp,
 } from "./firebase.js";
 const ADMIN_EMAIL = "handmadecreations673@gmail.com";
 
@@ -56,3 +58,33 @@ async function loadDashboard() {
   document.getElementById("totalSales").textContent =
     `₹${totalSales}`;
 }
+document.getElementById("addProductBtn").addEventListener("click", async () => {
+    const name = document.getElementById("productName").value.trim();
+    const price = Number(document.getElementById("productPrice").value);
+    const image = document.getElementById("productImage").value.trim();
+
+    if (!name || !price || !image) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    try {
+        await addDoc(collection(db, "products"), {
+            name,
+            price,
+            image,
+            createdAt: serverTimestamp()
+        });
+
+        alert("✅ Product added successfully!");
+
+        document.getElementById("productName").value = "";
+        document.getElementById("productPrice").value = "";
+        document.getElementById("productImage").value = "";
+
+        loadDashboard();
+    } catch (error) {
+        console.error(error);
+        alert("❌ Failed to add product.");
+    }
+});
