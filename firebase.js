@@ -13,6 +13,7 @@ import {
   getFirestore,
   doc,
   setDoc,
+  addDoc,
   collection,
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
@@ -40,6 +41,7 @@ export {
   updateProfile,
   doc,
   setDoc,
+  addDoc,
   collection,
   getDocs
 };
