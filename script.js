@@ -3,6 +3,8 @@ import {
   db,
   collection,
   getDocs,
+  addDoc,
+  serverTimestamp,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
