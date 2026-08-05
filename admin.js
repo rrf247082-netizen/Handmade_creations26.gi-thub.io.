@@ -87,6 +87,22 @@ document.getElementById("addProductBtn").addEventListener("click", async () => {
 
         loadDashboard();
       loadProductsTable();
+      window.deleteProduct = async function(id) {
+    if (!confirm("Delete this product?")) return;
+
+    try {
+        await deleteDoc(doc(db, "product", id));
+
+        alert("✅ Product deleted!");
+
+        loadDashboard();
+        loadProductsTable();
+
+    } catch (error) {
+        console.error(error);
+        alert("❌ Failed to delete product.");
+    }
+};
     } catch (error) {
         console.error(error);
         alert("❌ Failed to add product.");
@@ -116,7 +132,8 @@ async function loadProductsTable() {
 
             <td>
                 <button>Edit</button>
-                <button>Delete</button>
+                <button onclick="deleteProduct('$
+                  {id}')">Delete</button>
             </td>
         </tr>
         `;
