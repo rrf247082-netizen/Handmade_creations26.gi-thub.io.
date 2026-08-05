@@ -114,8 +114,8 @@ async function loadProductsTable() {
     const snapshot = await getDocs(collection(db, "product"));
 
     snapshot.forEach((docSnap) => {
-
-      const product = docSnap.data();
+    const id = docSnap.id;
+    const product = docSnap.data();
       const id = docSnap.id;
 
       table.innerHTML += `
