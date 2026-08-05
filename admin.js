@@ -184,3 +184,4 @@ window.deleteProduct = async function(id) {
   }
 
 };
+   }
