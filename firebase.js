@@ -14,6 +14,7 @@ import {
   doc,
   setDoc,
   addDoc,
+  deleteDoc,
   collection,
   getDocs,
   serverTimestamp,
