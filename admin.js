@@ -69,7 +69,7 @@ document.getElementById("addProductBtn").addEventListener("click", async () => {
     }
 
     try {
-        await addDoc(collection(db, "products"), {
+        await addDoc(collection(db, "product"), {
             name,
             price,
             image,
