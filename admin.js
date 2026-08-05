@@ -4,6 +4,8 @@ import {
   collection,
   getDocs,
   addDoc,
+  deleteDoc,
+  doc,
   onAuthStateChanged,
   serverTimestamp,
 } from "./firebase.js";
@@ -88,3 +90,33 @@ document.getElementById("addProductBtn").addEventListener("click", async () => {
         alert("❌ Failed to add product.");
     }
 });
+async function loadProductsTable() {
+    const table = document.getElementById("productsTable");
+    if (!table) return;
+
+    table.innerHTML = "";
+
+    const snapshot = await getDocs(collection(db, "product"));
+
+    snapshot.forEach((docSnap) => {
+        const product = docSnap.data();
+
+        table.innerHTML += `
+        <tr>
+            <td style="padding:10px;">
+                <img src="${product.image}" width="60">
+            </td>
+
+            <td>${product.name}</td>
+
+            <td>₹${product.price}</td>
+
+            <td>
+                <button>Edit</button>
+                <button>Delete</button>
+            </td>
+        </tr>
+        `;
+    });
+}
+loadProductsTable();
