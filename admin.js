@@ -23,6 +23,7 @@ onAuthStateChanged(auth, (user) => {
     return;
   }
   loadDashboard();
+  loadProductsTable();
   });
 
 async function loadDashboard() {
@@ -119,5 +120,4 @@ async function loadProductsTable() {
         `;
     });
 }
-loadDashboard();
-loadProductsTable();
+
