@@ -287,10 +287,8 @@ import {
         const paymentMethod = paymentMethodEl ? paymentMethodEl.value : 'Cash on Delivery';
         const totalVal = Number(cart.reduce((s, i) => s + (Number(i.price) || 0) * (Number(i.qty) || 1), 0));
         const order = { id:`HC26-${Math.floor(Math.random()*900000+100000)}`, customer:user, paymentMethod, date:new Date().toLocaleDateString(), items:cart, total: Number(totalVal.toFixed(2)) };
-        Storage.set('lastOrder', order);
-        Cart.clear();
-        notify('Order placed successfully!');
-        window.location.href = 'order-success.html';
+        window.location.href = 
+          'checkout.html';
       });
     }
 
