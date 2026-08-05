@@ -86,6 +86,7 @@ document.getElementById("addProductBtn").addEventListener("click", async () => {
         document.getElementById("productImage").value = "";
 
         loadDashboard();
+      loadProductsTable();
     } catch (error) {
         console.error(error);
         alert("❌ Failed to add product.");
