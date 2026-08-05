@@ -132,7 +132,8 @@ async function loadProductsTable() {
 
             <td>
                 <button>Edit</button>
-                <button onclick="deleteProduct('$
+                <button
+                onclick="window.deleteProduct('$
                   {id}')">Delete</button>
             </td>
         </tr>
