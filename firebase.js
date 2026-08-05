@@ -15,6 +15,7 @@ import {
   setDoc,
   addDoc,
   deleteDoc,
+  updateDoc,
   collection,
   getDocs,
   serverTimestamp,
@@ -45,6 +46,7 @@ export {
   setDoc,
   addDoc,
   deleteDoc,
+  updateDoc,
   collection,
   getDocs,
   serverTimestamp
