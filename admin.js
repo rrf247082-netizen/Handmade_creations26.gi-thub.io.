@@ -116,6 +116,7 @@ async function loadProductsTable() {
     snapshot.forEach((docSnap) => {
     const id = docSnap.id;
     const product = docSnap.data();
+     const productId = docSnap.id;
       const id = docSnap.id;
 
       table.innerHTML += `
@@ -185,8 +186,7 @@ async function loadProductsTable() {
               Edit
             </button>
 
-            <button onclick="window.deleteProduct('${id}')">
-              Delete
+            <button onclick="window.deleteProduct('${productId}')">Delete</button>
             </button>
 
           </td>
