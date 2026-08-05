@@ -1,8 +1,23 @@
 import {
+  auth,
   db,
   collection,
-  getDocs
+  getDocs,
+  onAuthStateChanged
 } from "./firebase.js";
+const ADMIN_EMAIL = "handmadecreations673@gmail.com";
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  if (user.email !== ADMIN_EMAIL) {
+    alert("Access denied! Admin only.");
+    window.location.href = "index.html";
+  }
+});
 
 async function loadDashboard() {
   const ordersSnapshot = await getDocs(collection(db, "orders"));
