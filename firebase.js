@@ -15,7 +15,8 @@ import {
   setDoc,
   addDoc,
   collection,
-  getDocs
+  getDocs,
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -43,5 +44,6 @@ export {
   setDoc,
   addDoc,
   collection,
-  getDocs
+  getDocs,
+  serverTimestamp
 };
