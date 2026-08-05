@@ -575,27 +575,51 @@ import {
   try {
     grid.innerHTML = "<p>Loading products...</p>";
 
-    const snapshot = await getDocs(collection(db, "product"));
-
-snapshot.forEach(doc => {
-
-});
-
+    const snapshot = await getDocs(collection(db, "product")); // ensure the collection name is correct
     console.log("Products found:", snapshot.size);
 
-    grid.innerHTML = "";
+    if (snapshot.empty) {
+      grid.innerHTML = "<p>No products found.</p>";
+      return;
+    }
+
+    // build markup in a buffer (faster + safer)
+    let html = "";
 
     snapshot.forEach((doc) => {
-      const p = doc.data();
+      const p = doc.data() || {};
+      // Fallback lookup examples — adapt to your Firestore fields
+      const name = p.name || p.title || "Untitled product";
+      const priceRaw = (p.price ?? p.amount ?? p.regular_price);
+      // If price is missing show empty string (so UI doesn't print 'undefined')
+      const priceText = (priceRaw !== undefined && priceRaw !== null && priceRaw !== "")
+        ? `₹${Number(priceRaw).toLocaleString('en-IN')}`
+        : ""; // or 'Contact for price'
 
-      grid.innerHTML += `
+      // Image fallbacks:
+      // - prefer full URLs
+      // - if stored as relative path like 'images/x.jpg' keep it
+      // - avoid leading slash if your site is hosted under a repo on GitHub pages
+      let image = p.image || (p.images && p.images[0]) || '';
+      if (typeof image === 'object' && image.url) image = image.url; // some structures
+      // If image is a string that starts with '/' and you're on GitHub Pages repo site,
+      // consider removing leading slash or making it absolute:
+      if (image && image.startsWith('/') && location.hostname.includes('github.io') && location.pathname !== '/') {
+        // convert to relative by removing leading slash
+        image = image.replace(/^\//, '');
+      }
+      // final safe image URL or placeholder
+      const imageUrl = image || 'images/default-product.png';
+
+      // ensure values are escaped (simple approach — your data is probably safe)
+      html += `
         <article class="product-card"
-          data-name="${p.name}"
-          data-price="${p.price}"
-          data-image="${p.image}">
-          <img src="${p.image}" alt="${p.name}">
-          <h3>${p.name}</h3>
-          <p class="price">₹${p.price}</p>
+          data-name="${name}"
+          data-price="${priceRaw !== undefined && priceRaw !== null ? priceRaw : ''}"
+          data-image="${imageUrl}">
+          <img src="${imageUrl}" alt="${name}">
+          <h3>${name}</h3>
+          <p class="price">${priceText}</p>
           <div class="card-actions">
             <button class="btn add-to-cart">Add to Cart</button>
             <button class="btn btn-outline add-wishlist">♡ Wishlist</button>
@@ -604,13 +628,11 @@ snapshot.forEach(doc => {
       `;
     });
 
-    if (snapshot.empty) {
-      grid.innerHTML = "<p>No products found.</p>";
-    }
+    grid.innerHTML = html;
 
   } catch (error) {
-    console.error(error);
-    grid.innerHTML = `<p style="color:red">${error.message}</p>`;
+    console.error('loadProducts error:', error);
+    grid.innerHTML = `<p style="color:red">${error.message || 'Failed to load products'}</p>`;
   }
   }
   document.addEventListener('DOMContentLoaded', () => {
