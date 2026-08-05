@@ -160,57 +160,6 @@ async function loadProductsTable() {
 
   }
 
-}
-  try {
-
-    const snapshot = await getDocs(collection(db, "product"));
-
-    snapshot.forEach((docSnap) => {
-
-      const product = docSnap.data();
-      const id = docSnap.id;
-
-      table.innerHTML += `
-        <tr>
-
-          <td style="padding:10px;">
-            <img src="${product.image}" width="60">
-          </td>
-
-          <td>${product.name}</td>
-
-          <td>₹${product.price}</td>
-
-          <td>
-            <button onclick="alert('Edit feature coming next')">
-              Edit
-            </button>
-
-            <button onclick="window.deleteProduct('${productId}')">Delete</button>
-            </button>
-
-          </td>
-
-        </tr>
-      `;
-
-    });
-
-  } catch (error) {
-
-    console.error(error);
-
-    table.innerHTML = `
-      <tr>
-        <td colspan="4">
-          ${error.message}
-        </td>
-      </tr>
-    `;
-
-  }
-
-}
 window.deleteProduct = async function(id) {
 
   const ok = confirm("Delete this product?");
