@@ -119,4 +119,5 @@ async function loadProductsTable() {
         `;
     });
 }
+loadDashboard();
 loadProductsTable();
