@@ -501,7 +501,8 @@ import {
       const order = {
         id: `HC26-${Math.floor(Math.random()*900000+100000)}`,
         customer, paymentMethod, date: new Date().toLocaleDateString(),
-        items: cart, subtotal, shipping, total: subtotal + shipping
+        items: JSON.parse(JSON.stringify(cart)),
+        subtotal, shipping, total: subtotal + shipping
       };
       Storage.set('lastOrder', order);
       Cart.clear();
