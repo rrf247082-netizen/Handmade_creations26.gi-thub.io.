@@ -506,10 +506,20 @@ import {
         items: JSON.parse(JSON.stringify(cart)),
         subtotal, shipping, total: subtotal + shipping
       };
-      Storage.set('lastOrder', order);
-      Cart.clear();
-      notify('Order placed — thank you!');
-      window.location.href = 'order-success.html';
+      addDoc(collection(db, "orders"), {
+  ...order,
+  createdAt: serverTimestamp()
+})
+.then(() => {
+  Storage.set("lastOrder", order);
+  Cart.clear();
+  notify("Order placed — thank you!");
+  window.location.href = "order-success.html";
+})
+.catch((error) => {
+  console.error(error);
+  alert("Failed to save order.");
+});
     });
 
     renderSummary();
