@@ -586,7 +586,7 @@ import {
   try {
     grid.innerHTML = "<p>Loading products...</p>";
 
-    const snapshot = await getDocs(collection(db, "products")); // ensure the collection name is correct
+    const snapshot = await getDocs(collection(db, "product")); // ensure the collection name is correct
     console.log("Products found:", snapshot.size);
 
     if (snapshot.empty) {
