@@ -595,7 +595,7 @@ snapshot.forEach(doc => {
           data-name="${p.name}"
           data-price="${p.price}"
           data-image="${p.image}">
-          <img src="${p.image}" alt="${p.name}">
+          <img src="image/${p.image}" alt="${p.name}">
           <h3>${p.name}</h3>
           <p class="price">₹${p.price}</p>
           <div class="card-actions">
