@@ -313,9 +313,7 @@ window.updateOrderStatus = async function(id, status) {
   }
 
 };
-  }
-
-};
+  
 window.updateTrackingNumber = async function(id, trackingNumber) {
 
   try {
