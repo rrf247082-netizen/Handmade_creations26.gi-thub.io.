@@ -10,8 +10,59 @@ import {
   onAuthStateChanged,
   serverTimestamp,
 } from "./firebase.js";
+const CLOUD_NAME = "jqdgffjk";
+const UPLOAD_PRESET = "handmade_upload";
 
 const ADMIN_EMAIL = "handmadecreations673@gmail.com";
+const productFile = document.getElementById("productFile");
+
+if (productFile) {
+
+productFile.addEventListener("change", async (e) => {
+
+const file = e.target.files[0];
+
+if (!file) return;
+
+const preview = document.getElementById("imagePreview");
+
+preview.style.display = "block";
+
+preview.src = URL.createObjectURL(file);
+
+const formData = new FormData();
+
+formData.append("file", file);
+
+formData.append("upload_preset", UPLOAD_PRESET);
+
+try {
+
+const response = await fetch(
+`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+{
+method: "POST",
+body: formData
+}
+);
+
+const data = await response.json();
+
+document.getElementById("productImage").value = data.secure_url;
+
+alert("✅ Image uploaded successfully!");
+
+} catch (err) {
+
+console.error(err);
+
+alert("❌ Image upload failed!");
+
+}
+
+});
+
+}
 
 onAuthStateChanged(auth, (user) => {
   if (!user) {
