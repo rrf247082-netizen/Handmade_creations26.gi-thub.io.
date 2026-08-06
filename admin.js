@@ -179,7 +179,10 @@ async function loadProductsTable() {
             <img src="${product.image}" width="60">
           </td>
 
-          <td>${product.name}</td>
+          <td>
+  <b>${product.name}</b><br>
+  <small>${product.category || "No Category"}</small>
+</td>
 
           <td>₹${product.price}</td>
 
