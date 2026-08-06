@@ -123,6 +123,7 @@ document.getElementById("addProductBtn").addEventListener("click", async () => {
   const name = document.getElementById("productName").value.trim();
   const price = Number(document.getElementById("productPrice").value);
   const image = document.getElementById("productImage").value.trim();
+  const category = document.getElementById("productCategory").value;
 
   if (!name || !price || !image) {
     alert("Please fill all fields.");
@@ -133,6 +134,7 @@ document.getElementById("addProductBtn").addEventListener("click", async () => {
 
     await addDoc(collection(db, "product"), {
       name,
+      category,
       price,
       image,
       createdAt: serverTimestamp(),
@@ -143,6 +145,7 @@ document.getElementById("addProductBtn").addEventListener("click", async () => {
     document.getElementById("productName").value = "";
     document.getElementById("productPrice").value = "";
     document.getElementById("productImage").value = "";
+    document.getElementById("productCategory").value = "";
 
     await loadDashboard();
     await loadProductsTable();
