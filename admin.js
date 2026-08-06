@@ -129,7 +129,7 @@ async function loadProductsTable() {
           <td>₹${product.price}</td>
 
           <td>
-            <button onclick="alert('Edit feature coming next')">
+            <button onclick="window.editProduct('${id}')">
               Edit
             </button>
 
