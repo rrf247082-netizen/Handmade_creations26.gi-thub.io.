@@ -125,15 +125,59 @@
 
 </div>
     <div class="card" style="margin-bottom:20px;">
-  <h2>➕ Add Product</h2>
 
-  <input type="text" id="productName" placeholder="Product Name"><br><br>
+<h2>➕ Add Product</h2>
 
-  <input type="number" id="productPrice" placeholder="Price"><br><br>
+<label><b>Product Image</b></label><br><br>
 
-  <input type="file" id="productFile" accept="image/*"><br><br>
+<input
+type="file"
+id="productFile"
+accept="image/*">
 
-<input type="text" id="productImage" placeholder="Image URL" readonly>
+<br><br>
+
+<img
+id="imagePreview"
+src=""
+style="
+display:none;
+width:150px;
+border-radius:10px;
+margin-bottom:15px;
+">
+
+<br>
+
+<input
+type="hidden"
+id="productImage">
+
+<label><b>Product Name</b></label>
+
+<input
+type="text"
+id="productName"
+placeholder="Enter product name">
+
+<br><br>
+
+<label><b>Price</b></label>
+
+<input
+type="number"
+id="productPrice"
+placeholder="Enter price">
+
+<br><br>
+
+<button id="addProductBtn">
+
+Add Product
+
+</button>
+
+    </div>
 
   <button id="addProductBtn">Add Product</button>
     </div>
