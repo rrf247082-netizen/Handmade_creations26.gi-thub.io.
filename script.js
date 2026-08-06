@@ -558,7 +558,7 @@ import {
       container.innerHTML = `<div class="order-card" style="background:#fff;padding:20px;border-radius:12px;box-shadow:var(--card-shadow)">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
           <h3>Order ${lastOrder.id}</h3>
-          <span class="status processing">Processing</span>
+          <span class="status">${lastOrder. status||"pending"}</span>
         </div>
         <div style="display:flex;gap:18px;align-items:center">
           <img src="${lastOrder.items?.[0]?.image || 'images/product1.jpg'}" alt="" style="width:120px;height:120px;object-fit:cover;border-radius:12px">
