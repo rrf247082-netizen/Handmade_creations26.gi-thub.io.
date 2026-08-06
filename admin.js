@@ -274,7 +274,16 @@ const newName = prompt("Enter new product name:", product.name);
     });
 
     alert("✅ Product updated successfully!");
-    window.updateOrderStatus = async function(id, status) {
+    
+    await loadDashboard();
+    await loadProductsTable();
+
+  } catch (error) {
+    console.error(error);
+    alert("❌ Failed to update product.");
+    };
+
+window.updateOrderStatus = async function(id, status) {
 
   try {
 
@@ -295,13 +304,6 @@ const newName = prompt("Enter new product name:", product.name);
   }
 
 };
-
-    await loadDashboard();
-    await loadProductsTable();
-
-  } catch (error) {
-    console.error(error);
-    alert("❌ Failed to update product.");
   }
 
 };
