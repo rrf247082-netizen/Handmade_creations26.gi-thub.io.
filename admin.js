@@ -5,6 +5,7 @@ import {
   getDocs,
   addDoc,
   deleteDoc,
+  updateDoc,
   doc,
   onAuthStateChanged,
   serverTimestamp,
@@ -156,9 +157,8 @@ async function loadProductsTable() {
       </tr>
     `;
 
-  }
-
-window.deleteProduct = async function(id) {
+    }
+    window.deleteProduct = async function(id) {
 
   const ok = confirm("Delete this product?");
 
@@ -183,3 +183,32 @@ window.deleteProduct = async function(id) {
 
 };
    }
+window.editProduct = async function(id) {
+
+  const newName = prompt("Enter new product name:");
+  if (newName === null) return;
+
+  const newPrice = prompt("Enter new price:");
+  if (newPrice === null) return;
+
+  const newImage = prompt("Enter new image URL:");
+  if (newImage === null) return;
+
+  try {
+    await updateDoc(doc(db, "product", id), {
+      name: newName,
+      price: Number(newPrice),
+      image: newImage
+    });
+
+    alert("✅ Product updated successfully!");
+
+    await loadDashboard();
+    await loadProductsTable();
+
+  } catch (error) {
+    console.error(error);
+    alert("❌ Failed to update product.");
+  }
+
+};
