@@ -502,7 +502,7 @@ import {
       const shipping = Number(summaryShipping && summaryShipping.textContent ? Number(summaryShipping.textContent) : SHIPPING) || SHIPPING;
       const order = {
         id: `HC26-${Math.floor(Math.random()*900000+100000)}`,
-        customer, paymentMethod, date: new Date().toLocaleDateString(),
+        customer, paymentMethod,status: "Pending", date: new Date().toLocaleDateString(),
         items: JSON.parse(JSON.stringify(cart)),
         subtotal, shipping, total: subtotal + shipping
       };
