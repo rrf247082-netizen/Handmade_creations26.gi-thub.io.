@@ -236,13 +236,20 @@ async function loadProductsTable() {
    }
 window.editProduct = async function(id) {
 
-  const newName = prompt("Enter new product name:");
+  const productDoc = (await getDocs(collection(db, "product")))
+  .docs.find(d => d.id === id);
+
+if (!productDoc) return;
+
+const product = productDoc.data();
+
+const newName = prompt("Enter new product name:", product.name);
   if (newName === null) return;
 
-  const newPrice = prompt("Enter new price:");
+  const newPrice = prompt("Enter new price:", product.price);
   if (newPrice === null) return;
 
-  const newImage = prompt("Enter new image URL:");
+  const newImage = prompt("Enter new image URL:", product.image);
   if (newImage === null) return;
 
   try {
