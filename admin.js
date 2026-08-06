@@ -119,6 +119,14 @@ async function loadDashboard() {
 <option value="Delivered" ${order.status==="Delivered"?"selected":""}>Delivered</option>
 </select>
 </td>
+<td>
+<input
+type="text"
+placeholder="Tracking No."
+value="${order.trackingNumber || ''}"
+style="width:140px"
+onchange="window.updateTrackingNumber('${orderDoc.id}', this.value)">
+</td>
       </tr>
     `;
   });
@@ -281,6 +289,7 @@ const newName = prompt("Enter new product name:", product.name);
   } catch (error) {
     console.error(error);
     alert("❌ Failed to update product.");
+  }
     };
 
 window.updateOrderStatus = async function(id, status) {
@@ -304,6 +313,27 @@ window.updateOrderStatus = async function(id, status) {
   }
 
 };
+  }
+
+};
+window.updateTrackingNumber = async function(id, trackingNumber) {
+
+  try {
+
+    await updateDoc(doc(db, "orders", id), {
+      trackingNumber: trackingNumber
+    });
+
+    alert("✅ Tracking number saved!");
+
+    loadDashboard();
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("❌ Failed to save tracking number.");
+
   }
 
 };
