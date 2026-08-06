@@ -110,7 +110,15 @@ async function loadDashboard() {
         <td>${order.customer?.fullName || "Guest"}</td>
         <td>${order.paymentMethod || "COD"}</td>
         <td>₹${order.total || 0}</td>
-        <td style="color:green;">Completed</td>
+        <td>
+<select onchange="window.updateOrderStatus('${orderDoc.id}', this.value)">
+<option value="Pending" ${order.status==="Pending"?"selected":""}>Pending</option>
+<option value="Confirmed" ${order.status==="Confirmed"?"selected":""}>Confirmed</option>
+<option value="Packed" ${order.status==="Packed"?"selected":""}>Packed</option>
+<option value="Shipped" ${order.status==="Shipped"?"selected":""}>Shipped</option>
+<option value="Delivered" ${order.status==="Delivered"?"selected":""}>Delivered</option>
+</select>
+</td>
       </tr>
     `;
   });
@@ -266,6 +274,27 @@ const newName = prompt("Enter new product name:", product.name);
     });
 
     alert("✅ Product updated successfully!");
+    window.updateOrderStatus = async function(id, status) {
+
+  try {
+
+    await updateDoc(doc(db, "orders", id), {
+      status: status
+    });
+
+    alert("✅ Order status updated!");
+
+    loadDashboard();
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("❌ Failed to update order status.");
+
+  }
+
+};
 
     await loadDashboard();
     await loadProductsTable();
