@@ -305,6 +305,7 @@ window.updateOrderStatus = async function(id, status) {
 
   if (orderDoc) {
     const order = orderDoc.data();
+    console.log(order);
 
     await emailjs.send(
       "service_nww5j5q",
@@ -318,6 +319,7 @@ window.updateOrderStatus = async function(id, status) {
     );
   }
     }
+    console.log("Shipping email sent!");
 
     alert("✅ Order status updated!");
 
