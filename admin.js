@@ -319,7 +319,8 @@ window.updateTrackingNumber = async function(id, trackingNumber) {
   try {
 
     await updateDoc(doc(db, "orders", id), {
-      trackingNumber: trackingNumber
+      trackingNumber: trackingNumber,
+status: trackingNumber.trim() ? "Shipped" : "Pending"
     });
 
     alert("✅ Tracking number saved!");
