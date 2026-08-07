@@ -299,6 +299,25 @@ window.updateOrderStatus = async function(id, status) {
     await updateDoc(doc(db, "orders", id), {
       status: status
     });
+    if (status === "Shipped") {
+  const orderDoc = (await getDocs(collection(db, "orders")))
+    .docs.find(d => d.id === id);
+
+  if (orderDoc) {
+    const order = orderDoc.data();
+
+    await emailjs.send(
+      "service_nww5j5q",
+      "template_2tn5kux",
+      {
+        email: order.customer.email,
+        name: order.customer.fullName,
+        order_id: id,
+        tracking_number: order.trackingNumber || "Will be updated soon"
+      }
+    );
+  }
+    }
 
     alert("✅ Order status updated!");
 
