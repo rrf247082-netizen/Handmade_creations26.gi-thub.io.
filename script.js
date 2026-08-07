@@ -550,27 +550,84 @@ import {
   }
 
   // ----- Orders list page (simple) -----
-  function initOrdersList(){
-    const container = $('#ordersContainer');
-    if(!container) return;
-    const lastOrder = Storage.get('lastOrder');
-    if(lastOrder){
-      container.innerHTML = `<div class="order-card" style="background:#fff;padding:20px;border-radius:12px;box-shadow:var(--card-shadow)">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <h3>Order ${lastOrder.id}</h3>
-          <span class="status">${lastOrder. status||"pending"}</span>
-        </div>
-        <div style="display:flex;gap:18px;align-items:center">
-          <img src="${lastOrder.items?.[0]?.image || 'images/product1.jpg'}" alt="" style="width:120px;height:120px;object-fit:cover;border-radius:12px">
-          <div>
-            <h4>${lastOrder.items?.[0]?.name || 'Item'}</h4>
-            <p>Customer: ${(lastOrder.customer && lastOrder.customer.fullName) || 'Guest'}</p>
-            <p>Payment: ${lastOrder.paymentMethod || 'N/A'}</p>
-            <p>Date: ${lastOrder.date || ''}</p>
-          </div>
-        </div>
-      </div>`;
+  async function initOrdersList() {
+
+  const container = document.getElementById("ordersContainer");
+
+  if (!container) return;
+
+  const lastOrder = JSON.parse(localStorage.getItem("lastOrder"));
+
+  if (!lastOrder) {
+
+    container.innerHTML = "<p>No orders found.</p>";
+
+    return;
+
+  }
+
+  try {
+
+    const snapshot = await getDocs(collection(db, "orders"));
+
+    let order = null;
+
+    snapshot.forEach(doc => {
+
+      const data = doc.data();
+
+      if (data.id === lastOrder.id) {
+
+        order = data;
+
+      }
+
+    });
+
+    if (!order) {
+
+      container.innerHTML = "<p>Order not found.</p>";
+
+      return;
+
     }
+
+    container.innerHTML = `
+
+      <div class="order-card" style="background:#fff;padding:20px;border-radius:12px;box-shadow:var(--card-shadow)">
+
+        <h3>Order ${order.id}</h3>
+
+        <p><strong>Status:</strong> ${order.status || "Pending"}</p>
+
+        <p><strong>Tracking Number:</strong> ${order.trackingNumber || "Not available yet"}</p>
+
+        <p><strong>Payment:</strong> ${order.paymentMethod}</p>
+
+        <p><strong>Total:</strong> ₹${order.total}</p>
+
+        ${
+          order.trackingNumber
+            ? `<a href="https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx"
+                 target="_blank"
+                 class="btn">
+                 📦 Track Parcel
+               </a>`
+            : ""
+        }
+
+      </div>
+
+    `;
+
+  } catch (error) {
+
+    console.error(error);
+
+    container.innerHTML = "<p>Failed to load orders.</p>";
+
+  }
+
   }
 
   // ----- Contact page -----
