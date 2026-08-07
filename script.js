@@ -511,6 +511,23 @@ import {
   createdAt: serverTimestamp()
 })
 .then(() => {
+  emailjs.send(
+    "service_nww5j5q",
+    "template_ht4ar8k",
+    {
+        email: customer.email,
+        order_id: order.id,
+        name: customer.fullName,
+        total: order.total,
+        payment: order.paymentMethod
+    }
+)
+.then(() => {
+    console.log("Order confirmation email sent.");
+})
+.catch((error) => {
+    console.error("Email failed:", error);
+});
   Storage.set("lastOrder", order);
   Cart.clear();
   notify("Order placed — thank you!");
