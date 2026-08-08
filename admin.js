@@ -375,7 +375,7 @@ window.updateTrackingNumber = async function(id, trackingNumber) {
 
     console.error(error);
 
-    alert("❌ Failed to save tracking number.");
+    alert("❌ Error: " + (error.text || error.message || error));
 
   }
 
